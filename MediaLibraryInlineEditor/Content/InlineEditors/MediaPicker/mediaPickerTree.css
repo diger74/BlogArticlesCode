@@ -1,0 +1,109 @@
+@keyframes openList {
+    0% {
+        opacity: 0;
+        transform-origin: top;
+        transform: rotateX(90deg);
+        max-height: 0;
+    }
+
+    100% {
+        transform-origin: top;
+        opacity: 1;
+        transform: rotateX(0);
+        max-height: 100%;
+    }
+}
+
+.media-picker-tree {
+
+}
+
+.media-picker-tree__name {
+    font-size: 14px;
+    background-color: #fff;
+    transition: background-color 0.3s linear, box-shadow 0.3s linear;
+}
+
+.media-picker-tree__item {
+    position: relative;
+    padding: 5px;
+}
+
+.media-picker-tree__list {
+    transform-origin: top;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.media-picker-tree__list.go-open {
+    animation: openList 0.3s ease normal both;
+}
+
+.media-picker-tree__list.go-close {
+    animation: openList 0.3s ease reverse both;
+}
+
+.media-picker-tree__list.isDisabled {
+    display: none;
+}
+
+.media-picker-tree__item-name {
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #fff;
+    color: black;
+    transition: background-color 0.3s linear, box-shadow 0.3s linear, color 0.3s linear;
+}
+
+.media-picker-tree__item.isSelected {
+
+}
+
+.media-picker-tree__item.isSelected > .media-picker-tree__item-name{
+    color: white;
+    background-color: #0f6194;
+    box-shadow: 0 0 2px 0 #0f6194;
+}
+
+.media-picker-tree__plus {
+    position: absolute;
+    cursor: pointer;
+    right: calc(100% + 2px);
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #0f6194;
+    border-radius: 2px;
+}
+
+.media-picker-tree__plus::before,
+.media-picker-tree__plus::after {
+    position: absolute;
+    content: '';
+    left: 50%;
+    top: 50%;
+    width: 65%;
+    background-color: #0f6194;
+    height: 1px;
+    transition: transform 0.3s ease, opacity 0.3s linear;
+}
+
+.media-picker-tree__plus::before {
+    transform: translate(-50%, -50%);
+}
+
+.media-picker-tree__plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.media-picker-tree__item.isOpen > .media-picker-tree__plus::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+}
+
+.media-picker-tree__item.isOpen > .media-picker-tree__plus::after {
+    transform: translate(-50%, -50%) rotate(180deg);
+}

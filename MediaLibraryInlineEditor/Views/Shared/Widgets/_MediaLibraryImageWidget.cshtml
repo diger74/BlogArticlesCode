@@ -1,0 +1,19 @@
+﻿@using diger74.Models.InlineEditors.ImageEditor
+@using diger74.Models.Widgets
+@model diger74.Models.Widgets.MediaLibraryImageWidgetViewModel
+
+@if (Context.Kentico().PageBuilder().EditMode)
+{
+    Html.RenderPartial("InlineEditors/_MediaEditor", new MediaEditorViewModel
+    {
+        PropertyName = nameof(MediaLibraryImageWidgetProperties.ImageGuid),
+        Title = "Image",
+        ImageUrl = Model?.Image?.Url,
+        ImageFolderPath = Model?.Image?.FolderPath,
+        ImageId = Model?.Image?.Id,
+        FileName = Model?.Image?.FileName,
+        Order = 0
+    });
+}
+
+<img src="@(Model?.Image?.Url)" alt="@(Model?.Image?.Title)"/>

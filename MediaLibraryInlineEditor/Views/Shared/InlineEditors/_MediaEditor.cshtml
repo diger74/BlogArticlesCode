@@ -1,0 +1,36 @@
+﻿@model diger74.Models.InlineEditors.ImageEditor.MediaEditorViewModel
+
+@{
+
+    HtmlString GetFoldersUrl()
+    {
+        return Url.Kentico().AuthenticateUrl(Url.Action("GetMediaFolderTree", "Media"), false);
+    }
+
+    HtmlString GetFilesUrl()
+    {
+        return Url.Kentico().AuthenticateUrl(Url.Action("GetMediaFiles", "Media"), false);
+    }
+
+}
+
+@using (Html.Kentico().BeginInlineEditor("media-editor", Model.PropertyName, new { data_foldersurl = GetFoldersUrl(), data_filesurl=GetFilesUrl() }))
+{
+
+    <button class="media-picker-button" style="top: calc(15px + 60px*@Model.Order)" name="media-picker-button" type="button"
+            data-image-src="@Model.ImageUrl" data-image-path="@Model.ImageFolderPath"
+            data-image-id="@Model.ImageId"
+            @if ( Model.ImageNumber != null )
+            {
+                <text>
+                    data-imagenum="@Model.ImageNumber" data-images="@Model.ImagesJSON"
+                </text>
+            }
+            >
+        <div class="media-picker-button__title">
+            <p>@Model.Title</p>
+            <p>now is selected: @Model.FileName</p>
+        </div>
+        <div class="media-picker-button__image" style="background-image: url('/content/inlineeditors/mediapicker/image-icon.svg')"></div>
+    </button>
+}
