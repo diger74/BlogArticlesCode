@@ -10,7 +10,10 @@ namespace DancingGoat.Infrastructure
 
         public static void Register(string key, Action callback)
         {
-            Callbacks.AddOrUpdate(key, callback, (k, oldCallback) => oldCallback + callback);
+            if (!Callbacks.ContainsKey(key))
+            {
+                Callbacks.AddOrUpdate(key, callback, (k, oldCallback) => callback);
+            }
         }
 
         public static void Call(string key)

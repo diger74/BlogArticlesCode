@@ -25,10 +25,7 @@ namespace DancingGoat.Modules
 
         private void CacheItemRemovedOnExecute(object sender, CMSEventArgs<CacheItemRemovedEventArgs> e)
         {
-            if (e.Parameter.Reason == CMSCacheItemRemovedReason.Expired)
-            {
-                CacheExpirationCallbacks.Call(e.Parameter.Key);
-            }
+            CacheExpirationCallbacks.Call(e.Parameter.Key);
         }
     }
 }
